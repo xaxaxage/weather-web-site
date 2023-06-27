@@ -1,16 +1,32 @@
 import { FaSearchLocation } from "react-icons/fa";
 
-const addCity = () => {
-  
-}
+function SearchLine({ addCityIntoStorage }) {
+//   const addCity = (e, city) => {
+//     e.preventDefault()
+//     console.log(e)
+//   }
 
-function SearchLine() {
+//   const [data, setData] = useState('')
+
+//   function handleInputChange(text, name) {
+//      setData({...data, [name]: text.target.value})   
+//   }  
+//   return (
+//     <div>
+//         <input type="text" placeholder="Enter a city.." value={data.city} onChange={(e) => handleInputChange(e, 'username')} />
+//         <button onSubmit={(event) => {addCity(event, 'city')}} type="submit"><FaSearchLocation /></button>
+//     </div>
+//   )
+
+  const addCity = (e, city) => {
+    e.preventDefault()
+    console.log(e)
+  }
+
   return (
     <div>
-      <form>
         <input type="text" placeholder="Enter a city.."/>
-        <button onSubmit={(e) => {console.log(e)}} type="submit"><FaSearchLocation /></button>
-      </form>
+        <button onSubmit={(event) => {addCity(event, 'city')}} type="submit"><FaSearchLocation /></button>
     </div>
   )
 }
