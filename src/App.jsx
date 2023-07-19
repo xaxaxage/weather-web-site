@@ -2,10 +2,10 @@ import './App.css';
 import { BrowserRouter, Route, Routes, Outlet } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import Menu from './components/menu/Menu';
-import SearchLine from './components/searchLine/SearchLine';
-import CitiesWeather from './components/citiesWeather/CitiesWeather';
-import Footer from './components/footer/Footer';
+import SearchLine from './components/main-page/searchLine/SearchLine';
+import CitiesWeather from './components/main-page/citiesWeather/CitiesWeather';
+import Footer from './components/main-page/footer/Footer';
+import MainLayout from './layouts/MainLayout';
 
 let loading = true
 
@@ -42,12 +42,7 @@ function App() {
     <BrowserRouter>
       <div className='App'>
         <Routes>
-          <Route path="/" element={
-            <>
-              <Menu />
-              <Outlet />
-            </>
-          }>
+          <Route path="/" element={<MainLayout />}>
             <Route index element={
               <>
                 <h1>Have a nice weather!</h1>
@@ -55,7 +50,7 @@ function App() {
                 <CitiesWeather citiesInfo={citiesInfo} />
                 <Footer />
               </>
-            } />
+            }/>
           </Route>
         </Routes>
       </div>
