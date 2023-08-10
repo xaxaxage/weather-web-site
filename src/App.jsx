@@ -1,5 +1,5 @@
 import './App.css';
-import { BrowserRouter, Route, Routes, Outlet } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import SearchLine from './components/main-page/searchLine/SearchLine';
