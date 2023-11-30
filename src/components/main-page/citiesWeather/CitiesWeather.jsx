@@ -1,6 +1,4 @@
 const CitiesWeather = ({ citiesInfo }) => {
-  console.log(citiesInfo)
-
   return (
     citiesInfo.map(({ city, temperature}, index) => (
       <div key={index}>

@@ -12,11 +12,11 @@ let loading = true
 function App() {
   console.log('rendered')
 
-  const [citiesStorage, setCitiesStorage] = useState(localStorage.cities)
+  const [components, refreshComponents] = useState(false)
   const [citiesInfo, setCitiesInfo] = useState([])
   
   useEffect(() => {
-    let cities = JSON.parse(citiesStorage)
+    let cities = JSON.parse(localStorage.cities)
     const preCitiesInfo = []
 
     cities.forEach((city, i, arr) => {
@@ -25,17 +25,17 @@ function App() {
         .then((response) => {
           preCitiesInfo.push({city: city, temperature: Math.round(response.data.current.temp_c)+'°'})
 
-          if ([...arr].pop() === city) {
+          if ([...arr].pop() === city) { 
             loading = false
             setCitiesInfo(preCitiesInfo.toSorted())
           }
         })
     })
-  }, [citiesStorage])
+  }, [])
     
   const addCityIntoStorage = (city) => {
-    const parsedCitiesStorage = JSON.parse(citiesStorage)
-    setCitiesStorage(JSON.stringify([...parsedCitiesStorage, city]))
+    const parsedCitiesStorage = JSON.parse(localStorage.cities)
+    localStorage.cities = JSON.stringify([...parsedCitiesStorage, city])
   } 
 
   return loading ? <h1>Loading...</h1> : (
@@ -46,7 +46,7 @@ function App() {
             <Route index element={
               <>
                 <h1>Have a nice weather!</h1>
-                <SearchLine addCityIntoStorage={addCityIntoStorage} />
+                <SearchLine refreshComponents={() => {refreshComponents(!(components))}} addCityIntoStorage={addCityIntoStorage} />
                 <CitiesWeather citiesInfo={citiesInfo} />
                 <Footer />
               </>
